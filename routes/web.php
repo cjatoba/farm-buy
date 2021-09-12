@@ -17,9 +17,9 @@ Route::get('/', function () {
     return redirect('/register');
 });
 
-Route::get('/list', function () {
-    return view('list');
-})->middleware(['auth'])->name('list');;
+Route::get('/historic', function () {
+    return view('historic');
+})->middleware(['auth'])->name('historic');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
