@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return redirect('/register');
 });
+
+Route::get('/list', function () {
+    return view('list');
+})->middleware(['auth'])->name('list');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
