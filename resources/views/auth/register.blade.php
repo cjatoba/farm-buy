@@ -16,35 +16,47 @@
             <div>
                 <x-label for="name" :value="__('Nome')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full"
+                                type="text"
+                                name="name"
+                                :value="old('name')"
+                                required
+                                autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full"
+                                type="email"
+                                name="email"
+                                :value="old('email')"
+                                required />
             </div>
 
             <!-- Phone -->
             <div class="mt-4">
                 <x-label for="phone" :value="__('Telefone')" />
 
-                <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+                <x-input id="phone" class="block mt-1 w-full"
+                                type="text"
+                                name="phone"
+                                :value="old('phone')"
+                                maxlength="15"
+                                required />
             </div>
 
             <!-- Address -->
             <div class="mt-4">
                 <x-label for="address" :value="__('Endereço Completo')" />
 
-                <x-input
-                    id="address"
-                    class="block mt-1 w-full"
-                    type="text"
-                    name="address"
-                    :value="old('address')"
-                    placeholder="Ex. Nome da rua, Número, Bairro - Cidade/Estado"
-                    required />
+                <x-input id="address" class="block mt-1 w-full"
+                                type="text"
+                                name="address"
+                                :value="old('address')"
+                                placeholder="Ex. Nome da rua, Número, Bairro - Cidade/Estado"
+                                required />
             </div>
 
             <!-- Password -->
