@@ -35,9 +35,16 @@
 
             <!-- Address -->
             <div class="mt-4">
-                <x-label for="address" :value="__('Endereço')" />
+                <x-label for="address" :value="__('Endereço Completo')" />
 
-                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
+                <x-input
+                    id="address"
+                    class="block mt-1 w-full"
+                    type="text"
+                    name="address"
+                    :value="old('address')"
+                    placeholder="Ex. Nome da rua, Número, Bairro - Cidade/Estado"
+                    required />
             </div>
 
             <!-- Password -->
