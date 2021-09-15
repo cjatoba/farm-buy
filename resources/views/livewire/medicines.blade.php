@@ -7,14 +7,51 @@
             <h2 class="text-3xl">{{ 'R$ ' . str_replace('.',',',$medicine->price) }}</h2>
             <p class="text-lg">{{ 'Laboratório: ' . $medicine->laboratory }}</p>
             <p class="text-lg">{{ 'Substância ativa: ' . $medicine->milligram . 'mg' }}</p>
-            <select name="count" id="count" class="rounded-full bg-blue-300 mt-4">
+            <select name="count" id="count" class="rounded-full bg-blue-300 mt-4" wire:model="count">
                 <option value="">Selecione a quantidade</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
-            <button class="bg-blue-600 px-5 py-3 text-white rounded-lg text-center my-4">Comprar</button>
+            <button
+                id="add-to-cart"
+                class="bg-blue-600 px-5 py-3 text-white rounded-lg text-center my-4 inline-flex"
+                wire:click="addCart({{$medicine->id}})"
+                onclick="showLoading(this)">
+                Adicionar ao carrinho
+            </button>
+            @if (session()->has('status'))
+                <div class="py-3 px-5 mb-4 bg-green-100 text-green-900 text-sm rounded-md border border-green-200 flex items-center justify-between" role="alert">
+                    <span>{{ session('status')}}</span>
+                    <button class="w-4" type="button" data-dismiss="alert" aria-label="Close" onclick="this.parentElement.remove();">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
+            @if($error)
+                <div class="py-3 px-5 mb-4 bg-red-100 text-red-900 text-sm rounded-md border border-red-200 flex items-center justify-between" role="alert">
+                    <span>{{ $messageError}}</span>
+                    <button class="w-4" type="button" data-dismiss="alert" aria-label="Close" onclick="this.parentElement.remove();">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
         </div>
         @endforeach
     </div>
 </main>
+
+<script>
+    function showLoading(element) {
+        element.classList.add('cursor-not-allowed');
+        element.setAttribute('disabled', 'disabled');
+        element.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>Adicionando...`
+    }
+</script>
