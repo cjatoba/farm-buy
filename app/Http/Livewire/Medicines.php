@@ -4,15 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 use App\Models\Medicine;
-use Illuminate\Http\Request;
 use Livewire\Component;
 
 class Medicines extends Component
 {
     public $count;
     public $loading = false;
-    public $error = false;
-    public $messageError;
 
     public function render()
     {
@@ -27,8 +24,7 @@ class Medicines extends Component
 
         try{
             if(empty($this->count)){
-                $this->error = true;
-                $this->messageError = "Selecione a quantidade!";
+                session()->flash('error', 'Selecione a quantidade do medicamento!');
                 return;
             }
 
@@ -38,12 +34,12 @@ class Medicines extends Component
                 'count' => $this->count,
             ]);
 
+            $this->count = '';
+
             session()->flash('status', 'Medicamento adicionado no carrinho!');
 
-            $this->count = '';
         }catch(\Exception $e){
-            $this->error = true;
-            $this->messageError = $e->getMessage();
+            session()->flash('error', 'Falha ao adicionar o medicamento no carrinho!');
         }
     }
 }
