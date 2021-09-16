@@ -8,16 +8,23 @@ use Livewire\Component;
 class CartComponent extends Component
 {
     public $items;
+    public $total;
     public $count = 0;
 
-    protected $listeners = ['cartAdded' => 'mount'];
+    protected $listeners = ['cartAdded' => 'render'];
 
     public function mount(){
         $this->items = Cart::
                     where('user_id',auth()->user()->id)
                     ->join('medicines', 'carts.medicine_id', '=', 'medicines.id')
                     ->get();
+
         $this->count = Cart::where('user_id',auth()->user()->id)->count();
+
+        $this->total = Cart::
+        where('user_id',auth()->user()->id)
+        ->join('medicines', 'carts.medicine_id', '=', 'medicines.id')
+        ->sum('price');
     }
 
     public function render()

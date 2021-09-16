@@ -12,7 +12,7 @@
 <div id="modal"
     class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-blue-500 bg-opacity-50 transform scale-0 transition-transform duration-300">
     <!-- Modal content -->
-    <div class="bg-white w-1/2 h-1/2 p-12">
+    <div class="bg-white w-2/2 h-2/2 p-12">
         <!--Close modal button-->
         <button id="closebutton" type="button" class="focus:outline-none">
             <!-- Hero icon - close button -->
@@ -22,7 +22,34 @@
                     d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </button>
-        {{$items}}
+        <table class="table-auto border-4 text-center w-full">
+            <thead>
+                <tr class="border-2">
+                    <th>Medicamento</th>
+                    <th>Substância ativa</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($items as $item)
+                    <tr class="border-4">
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->milligram . 'mg' }}</td>
+                        <td>{{ 'R$ ' . $item->price }}</td>
+                        <td>{{ $item->count }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <h1 class="mt-5"><strong>Total: R$ {{ $total }}</strong></h1>
+        <label for="payment">Forma de Pagamento</label>
+        <select name="payment" id="payment">
+            <option value="">Dinheiro</option>
+            <option value="">Cartão de Débito</option>
+            <option value="">Cartão de Crédito</option>
+        </select>
+        <button class="bg-blue-600 px-5 py-3 text-white rounded-lg text-center my-4 inline-flex">Finalizar Compra</button>
     </div>
 </div>
 
