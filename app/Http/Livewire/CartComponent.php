@@ -27,6 +27,10 @@ class CartComponent extends Component
         ->sum('price');
     }
 
+    public function cartModalShow(){
+        $this->dispatchBrowserEvent('cart-modal-show');
+    }
+
     public function render()
     {
         return view('livewire.cart-component');
