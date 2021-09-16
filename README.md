@@ -17,6 +17,11 @@ Compilar os assets
 npm run dev
 ```
 
+Criar as tabelas com base nas migrations
+```
+php artisan migrate
+```
+
 Carregar a tabela de medicamentos com dados fakes
 ```
 php artisan db:seed
