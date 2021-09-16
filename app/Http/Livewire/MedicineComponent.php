@@ -36,7 +36,7 @@ class MedicineComponent extends Component
 
             $this->count = '';
 
-            session()->flash('status', 'Medicamento adicionado no carrinho!');
+            session()->flash('success', 'Medicamento adicionado no carrinho!');
 
         }catch(\Exception $e){
             session()->flash('error', 'Falha ao adicionar o medicamento no carrinho!');

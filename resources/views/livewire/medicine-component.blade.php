@@ -36,4 +36,14 @@
         </svg>
         Adicionar ao carrinho
     </button>
+    @if (session()->has('success'))
+        <div class="bg-green-700 rounded-full text-white">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="bg-red-700 rounded-full text-white">
+            {{ session('error') }}
+        </div>
+    @endif
 </div>
