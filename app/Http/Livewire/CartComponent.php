@@ -11,7 +11,7 @@ class CartComponent extends Component
     public $total;
     public $count = 0;
 
-    protected $listeners = ['cartAdded' => 'render'];
+    protected $listeners = ['cartAdded' => 'mount'];
 
     public function mount(){
         $this->items = Cart::
