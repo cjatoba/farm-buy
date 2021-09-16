@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +23,6 @@ Route::get('/historic', function () {
     return view('historic');
 })->middleware(['auth'])->name('historic');;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', Dashboard::class)->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

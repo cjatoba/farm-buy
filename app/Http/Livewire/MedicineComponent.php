@@ -5,19 +5,17 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use App\Models\Medicine;
 use Livewire\Component;
+use Livewire\Livewire;
 
-class Medicines extends Component
+class MedicineComponent extends Component
 {
+    public $medicine;
     public $count;
     public $loading = false;
 
     public function render()
     {
-        $medicines = Medicine::all();
-
-        return view('livewire.medicines', [
-            'medicines' => $medicines,
-        ]);
+        return view('livewire.medicine-component');
     }
 
     public function addCart($id){
@@ -33,6 +31,8 @@ class Medicines extends Component
                 'medicine_id' => $id,
                 'count' => $this->count,
             ]);
+
+            $this->emitTo('cart-component', 'cartAdded');
 
             $this->count = '';
 
