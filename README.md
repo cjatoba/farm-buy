@@ -2,9 +2,19 @@
 
 * Os comandos abaixo devem ser executados na raiz do projeto:
 
+Copiar o arquivo .env.example para .env
+```
+cp .env.example .env
+```
+
 Instalar as dependências do composer
 ```
 composer install
+```
+
+Gerar a key
+```
+php artisan key:generate
 ```
 
 Instalar as dependências Javascript
